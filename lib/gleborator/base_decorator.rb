@@ -8,7 +8,7 @@ module Gleborator
       if object.respond_to? :map
 
       else
-        
+        new(object)
       end
     end
   end
