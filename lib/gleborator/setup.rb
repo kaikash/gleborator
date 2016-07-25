@@ -14,6 +14,7 @@ module Gleborator
     module ClassMethods
       def decorate
         # begin
+          raise self.inspect
           decorator_class = "#{self.name}Decorator".constantize
           decorator_class.decorate_collection(self)
         # rescue NameError => e

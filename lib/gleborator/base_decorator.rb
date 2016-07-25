@@ -4,8 +4,8 @@ module Gleborator
       @object = object
     end
 
-    def self.decorate_collection(collection)
-      collection.map {|object| new(object) }
+    def self.decorate_collection(col)
+      col.map {|object| new(object) }
     end
   end
 end
