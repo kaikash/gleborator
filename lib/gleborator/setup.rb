@@ -3,23 +3,26 @@ module Gleborator
     extend ActiveSupport::Concern
 
     def decorate
-      begin
-        decorator_class = "#{self.class.name}Decorator".constantize
-        decorator_class.new(self)
-      rescue NameError => e
-        raise "Couldn't find decorator #{self.class.name}Decorator"
-      end
+      decorator_class.new(self)
+    end
+
+    def decorator_class
+      self.class.decorator_class
     end
 
     module ClassMethods
       def decorate
-        # begin
-          raise self.inspect
-          decorator_class = "#{self.name}Decorator".constantize
-          decorator_class.decorate_collection(self)
-        # rescue NameError => e
-          # raise "Couldn't find decorator #{self.name}Decorator"
-        # end
+        decorator_class.decorate_collection all
+      end
+
+      def decorator_class
+        begin
+          prefix = respond_to?(:model_name) ? model_name : name
+          decorator_name = "#{prefix}Decorator"
+          decorator_name.constantize
+        rescue NameError => e
+          raise "Couldn't find decorator #{decorator_name}"
+        end
       end
     end
   end
