@@ -15,7 +15,7 @@ module Gleborator
       def decorate
         begin
           decorator_class = "#{self.name}Decorator".constantize
-          decorate_class.decorate_collection(self)
+          decorator_class.decorate_collection(self)
         rescue NameError => e
           raise "Couldn't find decorator #{self.name}Decorator"
         end
