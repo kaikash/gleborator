@@ -4,12 +4,8 @@ module Gleborator
       @object = object
     end
 
-    def self.wrap(object)
-      if object.respond_to? :map
-
-      else
-        new(object)
-      end
+    def self.decorate_collection(collection)
+      collection.map {|object| new(object) }
     end
   end
 end
