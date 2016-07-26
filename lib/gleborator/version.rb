@@ -1,3 +1,3 @@
 module Gleborator
-  VERSION = "0.1.1.11"
+  VERSION = "1.0.0"
 end
